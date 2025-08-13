@@ -10,6 +10,11 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Register vulnerable modules
+app.use('/vuln', require('./vulnerable_modules/insecure_eval'));
+app.use('/vuln', require('./vulnerable_modules/hardcoded_secret'));
+app.use('/vuln', require('./vulnerable_modules/unsafe_file_read'));
+
 // Routes
 setRoutes(app);
 
